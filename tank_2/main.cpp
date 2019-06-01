@@ -128,7 +128,7 @@ int main(void)
 	*/
 	//由于参数不一样用不了函数指针 来提高代码的可维护性和可读性  typedef void (*test)()
 	initgraph(780, 760);
-	mciSendString(_T("play 1.mp3 repeat"), 0, 0, 0);
+	mciSendString(_T("play 11.mp3 repeat"), 0, 0, 0);
 	set_interface();
 	map_load(&map[0][0], 26, 26);
 	play();    
@@ -411,6 +411,7 @@ void myenemy_tank_move_control(Tank_init &enemy_tank, DIRECTION direction, IMAGE
 /**************************************
 * 敌方坦克的路劲算法 来找我方坦克和老鹰
 **************************************/
+
 DIRECTION control_enemy_direction(Tank_init &tank, int x, int y)  //根据坐标来找寻目标 ，让坦克自动寻找目标
 {
 	int falg = rand() % 100;
@@ -516,12 +517,12 @@ void play()
 			{
 				if (i % 2 == 0)
 				{
-					DIRECTION d = control_enemy_direction(enemy_tank[i], 12, 24);
+					DIRECTION d = control_enemy_direction(enemy_tank[i], 12, 24);//找老鹰
 					myenemy_tank_move_control(enemy_tank[i], d, &enemy_tank_direcation_image[d]);
 				}
 				else
 				{
-					DIRECTION d = control_enemy_direction(enemy_tank[i], my_tank.x, my_tank.y);
+					DIRECTION d = control_enemy_direction(enemy_tank[i], my_tank.x, my_tank.y);//找我方坦克
 					myenemy_tank_move_control(enemy_tank[i], d, &enemy_tank_direcation_image[d]);
 				}
 			}
